@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 
 Arduino arduino;
-ArrayList<Integer> dataList = new ArrayList<Integer>(); // 値を保存するリスト
+ArrayList<Object> dataList = new ArrayList<Object>(); // 値を保存するリスト
 
 void setup() {
   size(600, 250);
@@ -29,6 +29,9 @@ void mousePressed() {
 
 // エスケープキーでCSV書き出し＆終了
 void keyPressed() {
+  if(key == ' '){
+    dataList.add(" ");
+  }
   if (key == ESC) {
     key = 0; // ESCによるスケッチ終了を抑制
     saveDataToCSV();
@@ -40,7 +43,7 @@ void keyPressed() {
 void saveDataToCSV() {
   PrintWriter output = createWriter("data_output.csv");
   output.println("Input0");
-  for (int val : dataList) {
+  for (Object val : dataList) {
     output.println(val);
   }
   output.flush();
