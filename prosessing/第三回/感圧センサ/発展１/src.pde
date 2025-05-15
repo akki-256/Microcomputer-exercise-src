@@ -17,15 +17,12 @@ void setup() {
 
 void draw() {
   int input0 = arduino.analogRead(0);
-  // アナログ入力値の表示
   background(120);
   text("output : " + input0, 150, 30);
-  // ボルト本数の推定
   int count = round((float)(input0  - boltWeight + Dead / 2) / Threshold);
   if (input0 < Dead) {
-    count = 0; // ノイズ以下ならゼロとみなす
+    count = 0; 
   }
-  status = str(count); // 数値を文字列に変換
-
+  status = str(count); 
   text("Status : " + status, 150, 80);
 }
